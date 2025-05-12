@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt & Pozice | MojeFirma</title>
+  <!-- === KOPIE STEJNÝCH STYLŮ JAKO NA INDEXU === -->
+  <style>
+    :root { --primary:#0f172a; --accent:#3b82f6; --cta:#d94343; --light:#f8fafc; --dark:#0f172a; --radius:12px; }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif}
+    body{background:var(--light);color:var(--dark);line-height:1.6;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:auto;}
+    .logo{font-weight:700;font-size:1.75rem;color:var(--accent);}
+    nav ul{list-style:none;display:flex;gap:2rem;}
+    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;}
+    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--accent);left:0;bottom:-4px;transition:width .3s;}
+    nav a:hover::after,.active::after{width:100%;}
+    .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
+    .cta-link::after{display:none;}
+    .cta-link:hover{background:#bf3737;}
+    .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
+    .positions-list{list-style:none;padding:0;margin-top:1.5rem;}
+    .positions-list li{background:#fff;border-radius:var(--radius);padding:1rem 1.5rem;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:1rem;font-weight:500;}
+    footer{padding:2rem;text-align:center;font-size:.875rem;color:gray;}
+  </style>
+</head>
+<body>
+<!-- === HLAVIČKA (STEJNÁ JAKO NA INDEXU) === -->
+<header>
+  <div class="logo">MojeFirma</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">O nás</a></li>
+      <li><a href="index.html#services">Služby</a></li>
+      <!-- Označíme aktuální stránku třídou .active -->
+      <li><a class="active" href="kontakt.html">Kontakt</a></li>
+      <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- === SEKCE S POZICEMI === -->
+<section class="section">
+  <h2>Pozice</h2>
+  <p>Aktuálně hledáme kolegy na tyto role:</p>
+  <ul class="positions-list">
+    <li>Ředitel – Jarda Bagr</li>
+    <!-- Další pozice jednoduše doplňujte -->
+  </ul>
+</section>
+
+<footer>
+  © <span id="year"></span> MojeFirma. Všechna práva vyhrazena.
+</footer>
+
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const ctaOpen   = document.getElementById('ctaOpen');
+  const modal     = document.getElementById('offerModal');
+  const modalClose= document.getElementById('modalClose');
+  ctaOpen.addEventListener('click',e=>{e.preventDefault();modal.style.display='block';});
+  modalClose.addEventListener('click',()=>modal.style.display='none');
+  window.addEventListener('click',e=>{if(e.target===modal)modal.style.display='none';});
+</script>
+</body>
+</html>

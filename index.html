@@ -3,197 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moderní Minimalistická Stránka</title>
-  //hovno
+  <title>MojeFirma – Moderní web</title>
   <style>
-    :root {
-      --primary: #0f172a;
-      --accent: #3b82f6;
-      --light: #f8fafc;
-      --dark: #0f172a;
-      --radius: 12px;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, Arial, sans-serif;
-    }
-    body {
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      align-self: center;
-    }
-    nav ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      list-style: none;
-    }
-    nav a {
-      color: var(--dark);
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-    }
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      left: 0;
-      bottom: -4px;
-      transition: width 0.3s;
-    }
-    nav a:hover::after {
-      width: 100%;
-    }
-    .hero {
-      min-height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 4rem);
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      max-width: 600px;
-      margin-bottom: 2rem;
-    }
-    button.cta {
-      padding: 0.8rem 2rem;
-      background: var(--accent);
-      border: none;
-      border-radius: var(--radius);
-      color: var(--light);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
-    }
-    button.cta:hover {
-      background: #2563eb;
-    }
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-    }
-    .card h3 {
-      margin-bottom: 0.5rem;
-    }
-    footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.875rem;
-      color: gray;
-    }
+    /* ===== DESIGN TOKENS ===== */
+    :root{--primary:#0f172a;--accent:#3b82f6;--cta:#d94343;--light:#f8fafc;--dark:#0f172a;--radius:12px;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif;}
+    body{background:var(--light);color:var(--dark);line-height:1.6;}
+
+    /* ===== HEADER & NAV ===== */
+    header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:auto;}
+    .logo{font-weight:700;font-size:1.75rem;color:var(--accent);}
+    nav ul{list-style:none;display:flex;gap:2rem;}
+    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;}
+    nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:width .3s;}
+    nav a:hover::after{width:100%;}
+    .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
+    .cta-link::after{display:none;}
+    .cta-link:hover{background:#bf3737;}
+
+    /* ===== HERO ===== */
+    .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;}
+    .hero h1{font-size:clamp(2rem,6vw,4rem);margin-bottom:1rem;}
+    .hero p{max-width:600px;margin-bottom:2rem;}
+    .cta{padding:.8rem 2rem;background:var(--accent);border:none;border-radius:var(--radius);color:var(--light);font-size:1rem;cursor:pointer;transition:background .3s;box-shadow:0 4px 14px rgba(59,130,246,.35);}
+    .cta:hover{background:#2563eb;}
+
+    /* ===== SECTIONS ===== */
+    .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
+    .card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 16px rgba(0,0,0,.05);transition:transform .3s;}
+    .card:hover{transform:translateY(-6px);}
+
+    footer{padding:2rem;text-align:center;font-size:.875rem;color:gray;}
+
+    /* ===== MODAL (poptávka) ===== */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;padding:1rem;}
+    .modal-content{background:#fff;margin:auto;max-width:500px;padding:2rem;border-radius:var(--radius);position:relative;}
+    .close-modal{position:absolute;top:12px;right:12px;font-size:1.5rem;cursor:pointer;color:var(--dark);}
+    .modal-content label{font-weight:600;}
+    .modal-content input,.modal-content textarea{width:100%;padding:.6rem;margin:.4rem 0 1rem;border:1px solid #ccc;border-radius:var(--radius);}
+    .modal-content button{background:var(--cta);border:none;padding:.6rem 1.2rem;border-radius:var(--radius);color:#fff;font-weight:600;cursor:pointer;}
+    .modal-content button:hover{background:#bf3737;}
   </style>
 </head>
 <body>
+<!-- ===== HEADER ===== -->
 <header>
   <div class="logo">MojeFirma</div>
   <nav>
-    <ul id="navLinks">
-      <li><a href="#about">O nás</a></li>
+    <ul>
+      <li><a href="#about">O&nbsp;nás</a></li>
       <li><a href="#services">Služby</a></li>
-      <li><a href="#contact">Kontakt</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
     </ul>
   </nav>
 </header>
 
+<!-- ===== HERO ===== -->
 <section class="hero">
   <h1>Vytváříme digitální zážitky</h1>
-  <p>
-    Moderní weby, grafika a marketing – rychle, kvalitně a cenově
-    dostupně pro restaurace, hotely i farmy.
-  </p>
-  <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
-    Kontaktujte nás
-  </button>
+  <p>Moderní weby, grafika a marketing – rychle, kvalitně a cenově&nbsp;dostupně pro restaurace, hotely i farmy.</p>
+  <a class="cta" href="kontakt.html">Kontaktujte nás</a>
 </section>
 
+<!-- ===== ABOUT ===== -->
 <section id="about" class="section">
   <h2>O nás</h2>
-  <p>
-    Jsme tým kreativních profesionálů, kteří milují minimalismus a rychlá
-    řešení. Díky automatizaci a moderním nástrojům dokážeme nabídnout
-    špičkovou kvalitu za zlomek ceny.
-  </p>
+  <p>Jsme tým kreativních profesionálů, kteří milují minimalismus a rychlá řešení. Díky automatizaci a moderním nástrojům dokážeme nabídnout špičkovou kvalitu za zlomek ceny.</p>
 </section>
 
+<!-- ===== SERVICES ===== -->
 <section id="services" class="section">
   <h2>Služby</h2>
   <div class="cards">
-    <div class="card">
-      <h3>Webové stránky</h3>
-      <p>Responsivní a optimalizované weby, které prodávají.</p>
-    </div>
-    <div class="card">
-      <h3>Grafický design</h3>
-      <p>Logo, branding a tiskoviny v jednotném stylu.</p>
-    </div>
-    <div class="card">
-      <h3>Video & Foto</h3>
-      <p>Krátká videa a fotografie, které zaujmou na první pohled.</p>
-    </div>
-    <div class="card">
-      <h3>Social media</h3>
-      <p>Obsah a správa sociálních sítí, co přitáhne nové zákazníky.</p>
-    </div>
+    <div class="card"><h3>Webové stránky</h3><p>Responsivní a optimalizované weby, které prodávají.</p></div>
+    <div class="card"><h3>Grafický design</h3><p>Logo, branding a tiskoviny v jednotném stylu.</p></div>
+    <div class="card"><h3>Video & Foto</h3><p>Krátká videa a fotografie, které zaujmou na první pohled.</p></div>
+    <div class="card"><h3>Social media</h3><p>Obsah a správa sociálních sítí, co přitáhne nové zákazníky.</p></div>
   </div>
 </section>
 
-<section id="contact" class="section">
-  <h2>Kontakt</h2>
-  <p>
-    Můžete nám napsat na <a href="mailto:info@mojefirma.cz">info@mojefirma.cz</a>
-    nebo zavolat na <a href="tel:+420123456789">+420 123 456 789</a>.
-  </p>
-</section>
+<footer>© <span id="year"></span> MojeFirma. Všechna práva vyhrazena.</footer>
 
-<footer>
-  © <span id="year"></span> MojeFirma. Všechna práva vyhrazena.
-</footer>
+<!-- ===== MODAL ===== -->
+<div class="modal" id="offerModal">
+  <div class="modal-content">
+    <span class="close-modal" id="modalClose">&times;</span>
+    <h2>Nezávazná poptávka</h2>
+    <form>
+      <label for="name">Jméno</label>
+      <input id="name" type="text" required />
+      <label for="company">Společnost</label>
+      <input id="company" type="text" />
+      <label for="email">E‑mail</label>
+      <input id="email" type="email" required />
+      <label for="phone">Telefon</label>
+      <input id="phone" type="tel" />
+      <label for="work">Rozsah práce</label>
+      <textarea id="work" rows="4"></textarea>
+      <button type="submit">Odeslat</button>
+    </form>
+  </div>
+</div>
 
 <script>
+  // === Footer year ===
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // === Modal logic ===
+  const ctaOpen = document.getElementById('ctaOpen');
+  const modal = document.getElementById('offerModal');
+  const modalClose = document.getElementById('modalClose');
+
+  ctaOpen.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'block'; });
+  modalClose.addEventListener('click', () => modal.style.display = 'none');
+  window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 </script>
 </body>
 </html>
