@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MojeFirma – Moderní web</title>
+  <title>Služby | MojeFirma</title>
   <style>
-    /* ===== DESIGN TOKENS ===== */
+    /* ===== DESIGN TOKENS (shodné s index) ===== */
     :root{--primary:#0f172a;--accent:#3b82f6;--cta:#d94343;--light:#f8fafc;--dark:#0f172a;--radius:12px;}
     *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif;}
     body{background:var(--light);color:var(--dark);line-height:1.6;}
@@ -16,19 +16,12 @@
     nav ul{list-style:none;display:flex;gap:2rem;}
     nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;}
     nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:width .3s;}
-    nav a:hover::after{width:100%;}
+    nav a:hover::after,.active::after{width:100%;}
     .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
     .cta-link::after{display:none;}
     .cta-link:hover{background:#bf3737;}
 
-    /* ===== HERO ===== */
-    .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;}
-    .hero h1{font-size:clamp(2rem,6vw,4rem);margin-bottom:1rem;}
-    .hero p{max-width:600px;margin-bottom:2rem;}
-    .cta{padding:.8rem 2rem;background:var(--accent);border:none;border-radius:var(--radius);color:var(--light);font-size:1rem;cursor:pointer;transition:background .3s;box-shadow:0 4px 14px rgba(59,130,246,.35);}
-    .cta:hover{background:#2563eb;}
-
-    /* ===== SECTIONS ===== */
+    /* ===== SECTION & CARDS ===== */
     .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
     .card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 16px rgba(0,0,0,.05);transition:transform .3s;}
@@ -52,25 +45,23 @@
   <div class="logo">MojeFirma</div>
   <nav>
     <ul>
-      <li><a href="#about">O&nbsp;nás</a></li>
-      <li><a href="sluzby.html">Služby</a></li>
+      <li><a href="index.html#about">O&nbsp;nás</a></li>
+      <li><a href="sluzby.html" class="active">Služby</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
       <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <h1>Vytváříme digitální zážitky</h1>
-  <p>Moderní weby, grafika a marketing – rychle, kvalitně a cenově&nbsp;dostupně pro restaurace, hotely i farmy.</p>
-  <a class="cta" href="kontakt.html">Kontaktujte nás</a>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about" class="section">
-  <h2>O nás</h2>
-  <p>Jsme tým kreativních profesionálů, kteří milují minimalismus a rychlá řešení. Díky automatizaci a moderním nástrojům dokážeme nabídnout špičkovou kvalitu za zlomek ceny.</p>
+<!-- ===== SLUZBY SECTION ===== -->
+<section class="section">
+  <h2>Služby</h2>
+  <div class="cards">
+    <div class="card"><h3>Webové stránky</h3><p>Responsivní a optimalizované weby, které prodávají.</p></div>
+    <div class="card"><h3>Grafický design</h3><p>Logo, branding a tiskoviny v jednotném stylu.</p></div>
+    <div class="card"><h3>Video & Foto</h3><p>Krátká videa a fotografie, které zaujmou na první pohled.</p></div>
+    <div class="card"><h3>Social media</h3><p>Obsah a správa sociálních sítí, co přitáhne nové zákazníky.</p></div>
+  </div>
 </section>
 
 <footer>© <span id="year"></span> MojeFirma. Všechna práva vyhrazena.</footer>
