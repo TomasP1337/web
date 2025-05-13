@@ -3,36 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MojeFirma – Moderní web</title>
+  <title>weeby – Moderní web</title>
   <style>
     /* ===== DESIGN TOKENS ===== */
-    :root{--primary:#0f172a;--accent:#3b82f6;--cta:#d94343;--light:#f8fafc;--dark:#0f172a;--radius:12px;}
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --cta:#d94343;
+      --light:#f8fafc;
+      --dark:#0f172a;
+      --radius:12px;
+    }
     *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif;}
-    body{background:var(--light);color:var(--dark);line-height:1.6;}
+    body{background:var(--light);color:var(--dark);line-height:1.6;scroll-behavior:smooth;}
 
     /* ===== HEADER & NAV ===== */
     header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:auto;}
-    .logo{font-weight:700;font-size:1.75rem;color:var(--accent);}
-    nav ul{list-style:none;display:flex;gap:2rem;}
-    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;}
+    .logo img{height:80px;width:auto;display:block;}
+    nav ul{list-style:none;display:flex;gap:2rem;flex-wrap:wrap;}
+    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;transition:color .2s;}
     nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:width .3s;}
+    nav a:hover{color:var(--accent);}
     nav a:hover::after{width:100%;}
     .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
     .cta-link::after{display:none;}
     .cta-link:hover{background:#bf3737;}
 
     /* ===== HERO ===== */
-    .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;}
-    .hero h1{font-size:clamp(2rem,6vw,4rem);margin-bottom:1rem;}
-    .hero p{max-width:600px;margin-bottom:2rem;}
-    .cta{padding:.8rem 2rem;background:var(--accent);border:none;border-radius:var(--radius);color:var(--light);font-size:1rem;cursor:pointer;transition:background .3s;box-shadow:0 4px 14px rgba(59,130,246,.35);}
-    .cta:hover{background:#2563eb;}
+    .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;background:url("hero-bg.jpg") center/cover no-repeat;}
+    .hero h1{font-size:clamp(2rem,6vw,4rem);margin-bottom:1rem;text-shadow:0 3px 12px rgba(15,23,42,.3);color:#fff;}
+    .hero p{max-width:600px;margin-bottom:2rem;color:#f1f5f9;text-shadow:0 1px 6px rgba(15,23,42,.35);}
+    .cta{padding:.8rem 2rem;background:var(--accent);border:none;border-radius:var(--radius);color:var(--light);font-size:1rem;cursor:pointer;transition:background .3s;box-shadow:0 4px 14px rgba(37,99,235,.35);}
+    .cta:hover{background:#1e4fd5;}
 
-    /* ===== SECTIONS ===== */
+    /* ===== SERVICES CARDS ===== */
+    .services{background:#fff;padding:4rem 2rem;}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;max-width:1200px;margin:auto;}
+    .service-card{position:relative;background:var(--accent);color:#fff;border-radius:var(--radius);padding:2rem 2rem 3.5rem;box-shadow:0 6px 24px rgba(37,99,235,.25);transition:transform .3s,box-shadow .3s;}
+    .service-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(37,99,235,.35);}
+    .service-card h3{font-size:1.35rem;margin-bottom:1rem;}
+    .service-card p{font-size:.95rem;line-height:1.5;margin-bottom:1.5rem;}
+    .service-card a{color:#fff;font-weight:600;text-decoration:none;font-size:.95rem;}
+    .service-card a:hover{text-decoration:underline;}
+    .service-card svg{position:absolute;bottom:1rem;right:1rem;width:46px;height:46px;opacity:.15;fill:#fff;}
+
+    /* ===== BENEFITS ===== */
+    .benefits-section{
+      padding:4rem 1rem;
+      max-width:1200px;
+      margin:0 auto;
+    }
+
+    /* mřížka drží tři karty vedle sebe už od ≈500 px šířky */
+    .benefits-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:2rem;
+    }
+
+    .benefit{
+      background:#fff;
+      padding:2.5rem 2rem;
+      border-radius:var(--radius);
+      box-shadow:0 2px 8px rgba(0,0,0,.05);
+      text-align:center;
+      transition:transform .2s ease,box-shadow .2s ease;
+    }
+    .benefit h3{
+      font-size:1.125rem;
+      margin-bottom:1rem;
+    }
+    .benefit p{
+      font-size:.95rem;
+      color:#475569;
+    }
+    .benefit:hover{
+      transform:translateY(-4px);
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+    /* ===== SECTIONS (generic) ===== */
     .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
-    .card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 16px rgba(0,0,0,.05);transition:transform .3s;}
-    .card:hover{transform:translateY(-6px);}
 
     footer{padding:2rem;text-align:center;font-size:.875rem;color:gray;}
 
@@ -41,7 +91,7 @@
     .modal-content{background:#fff;margin:auto;max-width:500px;padding:2rem;border-radius:var(--radius);position:relative;}
     .close-modal{position:absolute;top:12px;right:12px;font-size:1.5rem;cursor:pointer;color:var(--dark);}
     .modal-content label{font-weight:600;}
-    .modal-content input,.modal-content textarea{width:100%;padding:.6rem;margin:.4rem 0 1rem;border:1px solid #ccc;border-radius:var(--radius);}
+    .modal-content input,.modal-content textarea{width:100%;padding:.6rem;margin:.4rem 0 1rem;border:1px solid #cbd5e1;border-radius:var(--radius);}
     .modal-content button{background:var(--cta);border:none;padding:.6rem 1.2rem;border-radius:var(--radius);color:#fff;font-weight:600;cursor:pointer;}
     .modal-content button:hover{background:#bf3737;}
   </style>
@@ -49,11 +99,13 @@
 <body>
 <!-- ===== HEADER ===== -->
 <header>
-  <div class="logo">MojeFirma</div>
+  <div class="logo"><img src="weeby-logo.png" alt="weeby logo"></div>
   <nav>
     <ul>
-      <li><a href="#about">O&nbsp;nás</a></li>
+      <!-- Prevent default scrolling with JS later -->
+      <li><a href="#about" id="about-link">O&nbsp;nás</a></li>
       <li><a href="sluzby.html">Služby</a></li>
+      <li><a href="cenik.html">Ceník</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
       <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
     </ul>
@@ -63,8 +115,53 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <h1>Vytváříme digitální zážitky</h1>
-  <p>Moderní weby, grafika a marketing – rychle, kvalitně a cenově&nbsp;dostupně pro restaurace, hotely i farmy.</p>
+  <p>Moderní weby, grafika a marketing – rychle, kvalitně a cenově dostupně pro restaurace, hotely i farmy.</p>
   <a class="cta" href="kontakt.html">Kontaktujte nás</a>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="services-grid">
+    <!-- Card 1 -->
+    <article class="service-card">
+      <h3>Webový&nbsp;Design</h3>
+      <p>Vytváříme webové stránky plně přizpůsobené vašim konkrétním potřebám, se zaměřením na moderní a atraktivní design, který zaujme vaše zákazníky.</p>
+      <a href="sluzby.html#webdesign">Více informací →</a>
+      <svg viewBox="0 0 24 24"><path d="M3 12h18M13 6l8 6-8 6"/></svg>
+    </article>
+    <!-- Card 2 -->
+    <article class="service-card">
+      <h3>Tvorba&nbsp;AI&nbsp;Chat Asistentů</h3>
+      <p>Vytváříme chytré a přívětivé AI asistenty, kteří automatizují zákaznickou podporu a zlepšují interakci se zákazníky. Naše řešení jsou přizpůsobitelná a efektivní.</p>
+      <a href="sluzby.html#ai">Více informací →</a>
+      <svg viewBox="0 0 24 24"><path d="M3 12h18M13 6l8 6-8 6"/></svg>
+    </article>
+    <!-- Card 3 -->
+    <article class="service-card">
+      <h3>Správa&nbsp;Webů</h3>
+      <p>Nabízíme správu webů, které jsme vytvořili, aby vaše online přítomnost byla vždy aktuální a fungovala bez problémů. Soustřeďte se na to, co je pro vás důležité.</p>
+      <a href="sluzby.html#sprava">Více informací →</a>
+      <svg viewBox="0 0 24 24"><path d="M3 12h18M13 6l8 6-8 6"/></svg>
+    </article>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section class="benefits-section" id="benefits">
+  <div class="benefits-grid">
+    <div class="benefit">
+      <h3>Rychlý start projektu</h3>
+      <p>První verzi webu máte během týdne – čas jsou peníze.</p>
+    </div>
+    <div class="benefit">
+      <h3>Kreativní grafický design</h3>
+      <p>Čistá typografie a moderní vizuál, který zaujme.</p>
+    </div>
+    <div class="benefit">
+      <h3>Kompletní správa&nbsp;webu</h3>
+      <p>Obsah, aktualizace i bezpečnost necháte na nás.</p>
+    </div>
+  </div>
 </section>
 
 <!-- ===== ABOUT ===== -->
@@ -73,14 +170,14 @@
   <p>Jsme tým kreativních profesionálů, kteří milují minimalismus a rychlá řešení. Díky automatizaci a moderním nástrojům dokážeme nabídnout špičkovou kvalitu za zlomek ceny.</p>
 </section>
 
-<footer>© <span id="year"></span> MojeFirma. Všechna práva vyhrazena.</footer>
+<footer>© <span id="year"></span> weeby. Všechna práva vyhrazena.</footer>
 
 <!-- ===== MODAL ===== -->
 <div class="modal" id="offerModal">
   <div class="modal-content">
     <span class="close-modal" id="modalClose">&times;</span>
     <h2>Nezávazná poptávka</h2>
-    <form>
+    <form id="offerForm">
       <label for="name">Jméno</label>
       <input id="name" type="text" required />
       <label for="company">Společnost</label>
@@ -105,9 +202,30 @@
   const modal = document.getElementById('offerModal');
   const modalClose = document.getElementById('modalClose');
 
-  ctaOpen.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'block'; });
+  ctaOpen.addEventListener('click', function(e){ e.preventDefault(); modal.style.display = 'block'; });
   modalClose.addEventListener('click', () => modal.style.display = 'none');
   window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+  // === Basic form handling (placeholder) ===
+  document.getElementById('offerForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Děkujeme za zájem! Ozveme se co nejdříve.');
+    modal.style.display = 'none';
+    this.reset();
+  });
+
+  // === O nás link: prevent jumping down ===
+  const aboutLink = document.getElementById('aboutLink');
+  if(aboutLink){
+    aboutLink.addEventListener('click', function(e){
+      e.preventDefault(); // zruší posun na sekci #about
+      // případně zde můžete zobrazit modal nebo redirect na o-nas.html
+    });
+  }
+</script>
+<script>
+  // zastaví anchor-skok u odkazu „O nás“
+  document.getElementById('about-link')?.addEventListener('click', e => e.preventDefault());
 </script>
 </body>
 </html>

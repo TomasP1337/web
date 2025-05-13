@@ -3,65 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt & Pozice | MojeFirma</title>
-  <!-- === KOPIE STEJNÝCH STYLŮ JAKO NA INDEXU === -->
+  <title>Kontakt | weeby</title>
   <style>
-    :root { --primary:#0f172a; --accent:#3b82f6; --cta:#d94343; --light:#f8fafc; --dark:#0f172a; --radius:12px; }
-    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif}
-    body{background:var(--light);color:var(--dark);line-height:1.6;}
+    /* ===== DESIGN TOKENS (sjednocené) ===== */
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --cta:#d94343;
+      --light:#f8fafc;
+      --dark:#0f172a;
+      --radius:12px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif;}
+    body{background:var(--light);color:var(--dark);line-height:1.6;scroll-behavior:smooth;}
+    a{color:inherit;text-decoration:none;}
+
+    /* ===== HEADER & NAV ===== */
     header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:auto;}
-    .logo{font-weight:700;font-size:1.75rem;color:var(--accent);}
-    nav ul{list-style:none;display:flex;gap:2rem;}
-    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;}
-    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--accent);left:0;bottom:-4px;transition:width .3s;}
-    nav a:hover::after,.active::after{width:100%;}
+    .logo img{height:80px;width:auto;display:block;}
+    nav ul{list-style:none;display:flex;gap:2rem;flex-wrap:wrap;}
+    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;transition:color .2s;}
+    nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:width .3s;}
+    nav a:hover{color:var(--accent);}
+    nav a:hover::after,nav a.active::after{width:100%;}
     .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
     .cta-link::after{display:none;}
     .cta-link:hover{background:#bf3737;}
-    .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
-    .positions-list{list-style:none;padding:0;margin-top:1.5rem;}
-    .positions-list li{background:#fff;border-radius:var(--radius);padding:1rem 1.5rem;box-shadow:0 4px 16px rgba(0,0,0,.05);margin-bottom:1rem;font-weight:500;}
+
+    /* ===== HERO ===== */
+    .page-hero{min-height:50vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;background:url("hero-bg.jpg") center/cover no-repeat;position:relative;color:#fff;}
+
+    .page-hero>*{position:relative;z-index:1;}
+    .page-hero h1{font-size:clamp(2rem,6vw,3.5rem);margin-bottom:.5rem;text-shadow:0 3px 12px rgba(0,0,0,.4);}
+    .page-hero p{max-width:600px;color:#cbd5e1;}
+    .page-hero{
+      /* viz .hero v index.html */
+      min-height:60vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:2rem;
+      background:url("hero-bg.jpg") center/cover no-repeat;
+      color:#fff;
+    }
+
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-section{padding:4rem 2rem;max-width:900px;margin:auto;display:grid;gap:2rem;grid-template-columns:1fr 1fr;}
+    .contact-info h3{font-size:1.5rem;margin-bottom:1rem;}
+    .contact-info p{margin-bottom:.75rem;}
+
+    form{display:flex;flex-direction:column;gap:.75rem;}
+    form input,form textarea{padding:.6rem;border:1px solid #cbd5e1;border-radius:var(--radius);}
+    form button{align-self:flex-start;background:var(--accent);border:none;padding:.6rem 1.5rem;border-radius:var(--radius);color:#fff;font-weight:600;cursor:pointer;transition:background .25s;}
+    form button:hover{background:#1e4fd5;}
+
+    @media(max-width:768px){.contact-section{grid-template-columns:1fr;}}
+
     footer{padding:2rem;text-align:center;font-size:.875rem;color:gray;}
   </style>
 </head>
 <body>
-<!-- === HLAVIČKA (STEJNÁ JAKO NA INDEXU) === -->
 <header>
-  <div class="logo">MojeFirma</div>
+  <a href="index.html" class="logo"><img src="weeby-logo.png" alt="weeby logo" /></a>
   <nav>
     <ul>
-      <li><a href="index.html">O nás</a></li>
-      <li><a href="index.html#services">Služby</a></li>
-      <!-- Označíme aktuální stránku třídou .active -->
+      <li><a href="index.html#about">O&nbsp;nás</a></li>
+      <li><a href="sluzby.html">Služby</a></li>
+      <li><a href="cenik.html">Ceník</a></li>
       <li><a class="active" href="kontakt.html">Kontakt</a></li>
       <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- === SEKCE S POZICEMI === -->
-<section class="section">
-  <h2>Pozice</h2>
-  <p>Aktuálně hledáme kolegy na tyto role:</p>
-  <ul class="positions-list">
-    <li>Ředitel – Jarda Bagr</li>
-    <!-- Další pozice jednoduše doplňujte -->
-  </ul>
+<section class="page-hero">
+  <h1>Kontaktujte nás</h1>
+  <p>Těšíme se na vaši zprávu – ozveme se co nejdříve.</p>
 </section>
 
-<footer>
-  © <span id="year"></span> MojeFirma. Všechna práva vyhrazena.
-</footer>
+<section class="contact-section">
+  <div class="contact-info">
+    <h3>weeby s.r.o.</h3>
+    <p>Webová 123, 110 00 Praha</p>
+    <p>IČO: 12345678</p>
+    <p>📞 <a href="tel:+420123456789">+420&nbsp;123&nbsp;456&nbsp;789</a></p>
+    <p>✉️ <a href="mailto:info@weeby.cz">info@weeby.cz</a></p>
+  </div>
+  <form id="contactForm">
+    <input type="text" placeholder="Jméno" required />
+    <input type="email" placeholder="E‑mail" required />
+    <textarea rows="5" placeholder="Vaše zpráva" required></textarea>
+    <button type="submit">Odeslat zprávu</button>
+  </form>
+</section>
 
+<footer>© <span id="year"></span> weeby. Všechna práva vyhrazena.</footer>
 
 <script>
+  // === Footer year ===
   document.getElementById('year').textContent = new Date().getFullYear();
-  const ctaOpen   = document.getElementById('ctaOpen');
-  const modal     = document.getElementById('offerModal');
-  const modalClose= document.getElementById('modalClose');
-  ctaOpen.addEventListener('click',e=>{e.preventDefault();modal.style.display='block';});
-  modalClose.addEventListener('click',()=>modal.style.display='none');
-  window.addEventListener('click',e=>{if(e.target===modal)modal.style.display='none';});
+
+  // === Simple form handler ===
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Děkujeme za zprávu! Odpovíme co nejdříve.');
+    e.target.reset();
+  });
 </script>
 </body>
 </html>

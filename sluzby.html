@@ -3,26 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Služby | MojeFirma</title>
+  <title>Služby | weeby</title>
   <style>
-    /* ===== DESIGN TOKENS (shodné s index) ===== */
-    :root{--primary:#0f172a;--accent:#3b82f6;--cta:#d94343;--light:#f8fafc;--dark:#0f172a;--radius:12px;}
+    /* ===== DESIGN TOKENS (sjednocené) ===== */
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --cta:#d94343;
+      --light:#f8fafc;
+      --dark:#0f172a;
+      --radius:12px;
+    }
     *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif;}
-    body{background:var(--light);color:var(--dark);line-height:1.6;}
+    body{background:var(--light);color:var(--dark);line-height:1.6;scroll-behavior:smooth;}
+    a{color:inherit;text-decoration:none;}
 
-    /* ===== HEADER & NAV ===== */
+    /* ===== HEADER & NAV (sjednocené) ===== */
     header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:auto;}
-    .logo{font-weight:700;font-size:1.75rem;color:var(--accent);}
-    nav ul{list-style:none;display:flex;gap:2rem;}
-    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;}
+    .logo img{height:80px;width:auto;display:block;}
+    nav ul{list-style:none;display:flex;gap:2rem;flex-wrap:wrap;}
+    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;transition:color .2s;}
     nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:width .3s;}
-    nav a:hover::after,.active::after{width:100%;}
+    nav a:hover{color:var(--accent);}
+    nav a:hover::after,nav a.active::after{width:100%;}
     .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
     .cta-link::after{display:none;}
     .cta-link:hover{background:#bf3737;}
 
+    /* ===== HERO (univerzální) ===== */
+    .page-hero{min-height:50vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;background:url("hero-bg.jpg") center/cover no-repeat;position:relative;color:#fff;}
+
+    .page-hero>*{position:relative;z-index:1;}
+    .page-hero h1{font-size:clamp(2rem,6vw,3.5rem);margin-bottom:.5rem;text-shadow:0 3px 12px rgba(0,0,0,.4);}
+    .page-hero p{max-width:600px;color:#cbd5e1;}
+    .page-hero{
+      /* viz .hero v index.html */
+      min-height:60vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:2rem;
+      background:url("hero-bg.jpg") center/cover no-repeat;
+      color:#fff;
+    }
+
     /* ===== SECTION & CARDS ===== */
     .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
+    .section h2{text-align:center;margin-bottom:2rem;font-size:2rem;}
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
     .card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 16px rgba(0,0,0,.05);transition:transform .3s;}
     .card:hover{transform:translateY(-6px);}
@@ -34,7 +63,7 @@
     .modal-content{background:#fff;margin:auto;max-width:500px;padding:2rem;border-radius:var(--radius);position:relative;}
     .close-modal{position:absolute;top:12px;right:12px;font-size:1.5rem;cursor:pointer;color:var(--dark);}
     .modal-content label{font-weight:600;}
-    .modal-content input,.modal-content textarea{width:100%;padding:.6rem;margin:.4rem 0 1rem;border:1px solid #ccc;border-radius:var(--radius);}
+    .modal-content input,.modal-content textarea{width:100%;padding:.6rem;margin:.4rem 0 1rem;border:1px solid #cbd5e1;border-radius:var(--radius);}
     .modal-content button{background:var(--cta);border:none;padding:.6rem 1.2rem;border-radius:var(--radius);color:#fff;font-weight:600;cursor:pointer;}
     .modal-content button:hover{background:#bf3737;}
   </style>
@@ -42,36 +71,47 @@
 <body>
 <!-- ===== HEADER ===== -->
 <header>
-  <div class="logo">MojeFirma</div>
+  <a href="index.html" class="logo"><img src="weeby-logo.png" alt="weeby logo"></a>
   <nav>
     <ul>
       <li><a href="index.html#about">O&nbsp;nás</a></li>
-      <li><a href="sluzby.html" class="active">Služby</a></li>
+      <li><a class="active" href="sluzby.html">Služby</a></li>
+      <li><a href="cenik.html">Ceník</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
       <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- ===== SLUZBY SECTION ===== -->
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <h1>Naše služby</h1>
+  <p>Od webdesignu přes marketing až po AI asistenty – nabízíme kompletní digitální servis na míru.</p>
+</section>
+
+<!-- ===== SLUŽBY SECTION ===== -->
 <section class="section">
   <h2>Služby</h2>
   <div class="cards">
-    <div class="card"><h3>Webové stránky</h3><p>Responsivní a optimalizované weby, které prodávají.</p></div>
-    <div class="card"><h3>Grafický design</h3><p>Logo, branding a tiskoviny v jednotném stylu.</p></div>
-    <div class="card"><h3>Video & Foto</h3><p>Krátká videa a fotografie, které zaujmou na první pohled.</p></div>
-    <div class="card"><h3>Social media</h3><p>Obsah a správa sociálních sítí, co přitáhne nové zákazníky.</p></div>
+    <div class="card"><h3>Webdesign &amp; Vývoj</h3><p>Responzivní, rychlé a bezpečné weby postavené na moderních technologiích. UX/UI, e‑shopy, rezervační systémy i jednoduché landing pages.</p></div>
+    <div class="card"><h3>SEO &amp; PPC Kampaně</h3><p>Optimalizujeme vyhledávání a nastavíme Google Ads i Facebook Ads tak, abyste platili jen za návštěvníky, kteří opravdu konvertují.</p></div>
+    <div class="card"><h3>Foto &amp; Dronové Záběry</h3><p>Profesionální letecké i pozemní snímky vašich prostor, produktů či událostí. Licence pilota UAV samozřejmostí.</p></div>
+    <div class="card"><h3>Videoprodukce</h3><p>Korporátní spoty, reels pro sociální sítě i 4K storytelling videa. Postprodukce včetně střihu, color gradingu a motion grafiky.</p></div>
+    <div class="card"><h3>Správa Sociálních sítí</h3><p>Vymyslíme obsahový kalendář, nafotíme, napíšeme a naplánujeme příspěvky. Sledujeme čísla, ladíme hashtagy, reagujeme na trendy.</p></div>
+    <div class="card"><h3>Branding &amp; Grafika</h3><p>Tvoříme loga, vizuální identity, tiskoviny i digitální bannery, které drží jednotnou linku a snadno se aplikují napříč médii.</p></div>
+    <div class="card"><h3>Copywriting &amp; Content</h3><p>Píšeme texty, co prodávají i baví. Blogy, newslettery, inzeráty — vše v konzistentním tónu vaší značky.</p></div>
+    <div class="card"><h3>Údržba &amp; Hosting</h3><p>Pravidelné aktualizace, zálohy a monitoring výkonu. Hosting na rychlých serverech v ČR se 99,9&nbsp;% dostupností.</p></div>
   </div>
 </section>
 
-<footer>© <span id="year"></span> MojeFirma. Všechna práva vyhrazena.</footer>
+<footer>© <span id="year"></span> weeby. Všechna práva vyhrazena.</footer>
 
-<!-- ===== MODAL ===== -->
+<!-- ===== POP‑UP FORM ===== -->
 <div class="modal" id="offerModal">
   <div class="modal-content">
     <span class="close-modal" id="modalClose">&times;</span>
     <h2>Nezávazná poptávka</h2>
-    <form>
+    <form id="offerForm">
       <label for="name">Jméno</label>
       <input id="name" type="text" required />
       <label for="company">Společnost</label>
@@ -95,10 +135,17 @@
   const ctaOpen = document.getElementById('ctaOpen');
   const modal = document.getElementById('offerModal');
   const modalClose = document.getElementById('modalClose');
-
   ctaOpen.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'block'; });
   modalClose.addEventListener('click', () => modal.style.display = 'none');
   window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+  // === Basic form handling (placeholder) ===
+  document.getElementById('offerForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Děkujeme za zájem! Ozveme se co nejdříve.');
+    modal.style.display = 'none';
+    this.reset();
+  });
 </script>
 </body>
 </html>

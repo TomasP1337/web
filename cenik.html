@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>weeby – Ceník služeb</title>
+  <style>
+    /* ===== DESIGN TOKENS (sdílíme s index.html) ===== */
+    :root{
+      --primary:#0f172a;
+      --accent:#2563eb;
+      --cta:#d94343;
+      --light:#f8fafc;
+      --dark:#0f172a;
+      --radius:12px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial,sans-serif;}
+    body{background:var(--light);color:var(--dark);line-height:1.6;scroll-behavior:smooth;}
+
+    /* ===== HEADER ===== */
+    header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;max-width:1200px;margin:auto;}
+    .logo img{height:80px;width:auto;display:block;}
+    nav ul{list-style:none;display:flex;gap:2rem;flex-wrap:wrap;}
+    nav a{position:relative;color:var(--dark);text-decoration:none;font-weight:500;padding:.25rem;transition:color .2s;}
+    nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:width .3s;}
+    nav a:hover{color:var(--accent);}
+    nav a:hover::after{width:100%;}
+    .cta-link{background:var(--cta);color:#fff!important;border-radius:var(--radius);padding:.4rem 1rem;font-weight:600;}
+    .cta-link::after{display:none;}
+    .cta-link:hover{background:#bf3737;}
+
+    /* ===== HERO TITLE ===== */
+    .page-hero{min-height:50vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;background:url("hero-bg.jpg") center/cover no-repeat;position:relative;color:#fff;}
+    .page-hero>*{position:relative;z-index:1;}
+    .page-hero h1{font-size:clamp(2rem,6vw,3.5rem);margin-bottom:.5rem;text-shadow:0 3px 12px rgba(0,0,0,.4);}
+    .page-hero p{max-width:600px;color:#cbd5e1;}
+    .page-hero{
+      /* viz .hero v index.html */
+      min-height:60vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:2rem;
+      background:url("hero-bg.jpg") center/cover no-repeat;
+      color:#fff;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing{padding:4rem 2rem;max-width:1200px;margin:auto;}
+    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;}
+    .price-card{background:#fff;border:2px solid #e2e8f0;border-radius:var(--radius);padding:2.5rem 2rem 3rem;position:relative;display:flex;flex-direction:column;box-shadow:0 4px 14px rgba(0,0,0,.05);transition:transform .25s,box-shadow .25s;}
+    .price-card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,0,0,.08);}
+    .price-icon{font-size:3rem;color:var(--accent);margin-bottom:1.25rem;text-align:center;}
+    .price-card h3{font-size:1.25rem;margin-bottom:.25rem;text-transform:uppercase;text-align:center;}
+    .price{font-size:2rem;font-weight:700;text-align:center;margin-bottom:.25rem;}
+    .per{font-size:.875rem;text-align:center;color:#64748b;margin-bottom:1.5rem;}
+    .features{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.65rem;}
+    .features li{display:flex;align-items:center;gap:.5rem;font-size:.95rem;}
+    .features li svg{width:18px;height:18px;flex-shrink:0;}
+    .btn-price{margin-top:auto;align-self:center;padding:.6rem 1.5rem;background:var(--accent);border:none;border-radius:var(--radius);color:#fff;font-weight:600;cursor:pointer;transition:background .25s;}
+    .btn-price:hover{background:#1e4fd5;}
+
+    footer{padding:2rem;text-align:center;font-size:.875rem;color:gray;}
+
+    /* ===== MODAL ===== */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;padding:1rem;}
+    .modal-content{background:#fff;margin:auto;max-width:500px;padding:2rem;border-radius:var(--radius);position:relative;}
+    .close-modal{position:absolute;top:12px;right:12px;font-size:1.5rem;cursor:pointer;color:var(--dark);}
+    .modal-content label{font-weight:600;}
+    .modal-content input,.modal-content textarea{width:100%;padding:.6rem;margin:.4rem 0 1rem;border:1px solid #cbd5e1;border-radius:var(--radius);}
+    .modal-content button{background:var(--cta);border:none;padding:.6rem 1.2rem;border-radius:var(--radius);color:#fff;font-weight:600;cursor:pointer;}
+    .modal-content button:hover{background:#bf3737;}
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo"><img src="weeby-logo.png" alt="weeby logo" /></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">O nás</a></li>
+      <li><a href="sluzby.html">Služby</a></li>
+      <li><a href="cenik.html">Ceník</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="#" class="cta-link" id="ctaOpen">Mám zájem o nabídku</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Ceník služeb</h1>
+  <p>Transparentní a férové ceny – vyberte si balíček, který nejlépe vyhovuje vašim potřebám.</p>
+</section>
+
+<section class="pricing">
+  <div class="pricing-grid">
+    <!-- BASE -->
+    <article class="price-card">
+      <div class="price-icon">✂️</div>
+      <h3>Webový design <strong>BASE</strong></h3>
+      <div class="price">10&nbsp;000&nbsp;Kč</div>
+      <div class="per">jednorázově</div>
+      <ul class="features">
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Mobilní design</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Responzivní design</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Kontaktní formulář + Captcha</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Individuální design</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Nahrání obsahu na web</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#0891b2" d="M19 12h-14v-2h14v2zm0 4h-14v-2h14v2zm0-8h-14v-2h14v2z"/></svg> Maximum 3&nbsp;stránky</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#dc2626" d="M19 13H5v-2h14v2z"/></svg> Nastavení cookies</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#dc2626" d="M19 13H5v-2h14v2z"/></svg> SEO Optimalizace</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#dc2626" d="M19 13H5v-2h14v2z"/></svg> Prioritní podpora</li>
+      </ul>
+      <button class="btn-price">Poptat</button>
+    </article>
+
+    <!-- PLUS -->
+    <article class="price-card">
+      <div class="price-icon">⏫</div>
+      <h3>Webový design <strong>PLUS</strong></h3>
+      <div class="price">15&nbsp;000&nbsp;Kč</div>
+      <div class="per">jednorázově</div>
+      <ul class="features">
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Mobilní design</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Responzivní design</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Kontaktní formulář + Captcha</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Individuální design</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Nahrání obsahu na web</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#0891b2" d="M19 12h-14v-2h14v2zm0 4h-14v-2h14v2zm0-8h-14v-2h14v2z"/></svg> Maximum 5&nbsp;stránek</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Nastavení cookies</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> SEO Optimalizace</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Prioritní podpora</li>
+      </ul>
+      <button class="btn-price">Poptat</button>
+    </article>
+
+    <!-- SPRÁVA WEBU -->
+    <article class="price-card">
+      <div class="price-icon">🔧</div>
+      <h3>Správa vašeho <strong>webu</strong></h3>
+      <div class="price">od&nbsp;1&nbsp;500&nbsp;Kč</div>
+      <div class="per">/ 3&nbsp;měs.</div>
+      <ul class="features">
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Pravidelné zálohy</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Pravidelné kontroly výkonu</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z"/></svg> Aktualizace</li>
+        <li><svg viewBox="0 0 24 24"><path fill="#16a34a" d="M20.285 6.708
