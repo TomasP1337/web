@@ -48,40 +48,14 @@
     .service-card svg{position:absolute;bottom:1rem;right:1rem;width:46px;height:46px;opacity:.15;fill:#fff;}
 
     /* ===== BENEFITS ===== */
-    .benefits-section{
-      padding:4rem 1rem;
-      max-width:1200px;
-      margin:0 auto;
-    }
+    .benefits-section{padding:4rem 1rem;max-width:1200px;margin:0 auto;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;}
+    .benefit{background:#fff;padding:2.5rem 2rem;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.05);text-align:center;transition:transform .2s,box-shadow .2s;}
+    .benefit h3{font-size:1.125rem;margin-bottom:1rem;}
+    .benefit p{font-size:.95rem;color:#475569;}
+    .benefit:hover{transform:translateY(-4px);box-shadow:0 4px 12px rgba(0,0,0,.08);}
 
-    /* mřížka drží tři karty vedle sebe už od ≈500 px šířky */
-    .benefits-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:2rem;
-    }
-
-    .benefit{
-      background:#fff;
-      padding:2.5rem 2rem;
-      border-radius:var(--radius);
-      box-shadow:0 2px 8px rgba(0,0,0,.05);
-      text-align:center;
-      transition:transform .2s ease,box-shadow .2s ease;
-    }
-    .benefit h3{
-      font-size:1.125rem;
-      margin-bottom:1rem;
-    }
-    .benefit p{
-      font-size:.95rem;
-      color:#475569;
-    }
-    .benefit:hover{
-      transform:translateY(-4px);
-      box-shadow:0 4px 12px rgba(0,0,0,.08);
-    }
-    /* ===== SECTIONS (generic) ===== */
+    /* ===== GENERIC SECTION ===== */
     .section{padding:4rem 2rem;max-width:1200px;margin:auto;}
 
     footer{padding:2rem;text-align:center;font-size:.875rem;color:gray;}
@@ -102,8 +76,8 @@
   <div class="logo"><img src="weeby-logo.png" alt="weeby logo"></div>
   <nav>
     <ul>
-      <!-- Prevent default scrolling with JS later -->
-      <li><a href="#about" id="about-link">O&nbsp;nás</a></li>
+      <!-- Odkaz bez kotvy (#) – nic nikam neskáče -->
+      <li><a href="#" id="about-link">O&nbsp;nás</a></li>
       <li><a href="sluzby.html">Služby</a></li>
       <li><a href="cenik.html">Ceník</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
@@ -132,14 +106,14 @@
     <!-- Card 2 -->
     <article class="service-card">
       <h3>Tvorba&nbsp;AI&nbsp;Chat Asistentů</h3>
-      <p>Vytváříme chytré a přívětivé AI asistenty, kteří automatizují zákaznickou podporu a zlepšují interakci se zákazníky. Naše řešení jsou přizpůsobitelná a efektivní.</p>
+      <p>Vytváříme chytré a přívětivé AI asistenty, kteří automatizují zákaznickou podporu a zlepšují interakci se zákazníky.</p>
       <a href="sluzby.html#ai">Více informací →</a>
       <svg viewBox="0 0 24 24"><path d="M3 12h18M13 6l8 6-8 6"/></svg>
     </article>
     <!-- Card 3 -->
     <article class="service-card">
       <h3>Správa&nbsp;Webů</h3>
-      <p>Nabízíme správu webů, které jsme vytvořili, aby vaše online přítomnost byla vždy aktuální a fungovala bez problémů. Soustřeďte se na to, co je pro vás důležité.</p>
+      <p>Nabízíme správu webů, které jsme vytvořili, aby vaše online přítomnost byla vždy aktuální a fungovala bez problémů.</p>
       <a href="sluzby.html#sprava">Více informací →</a>
       <svg viewBox="0 0 24 24"><path d="M3 12h18M13 6l8 6-8 6"/></svg>
     </article>
@@ -164,7 +138,7 @@
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
+<!-- ===== ABOUT (stále může zůstat na stránce) ===== -->
 <section id="about" class="section">
   <h2>O nás</h2>
   <p>Jsme tým kreativních profesionálů, kteří milují minimalismus a rychlá řešení. Díky automatizaci a moderním nástrojům dokážeme nabídnout špičkovou kvalitu za zlomek ceny.</p>
@@ -198,34 +172,15 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // === Modal logic ===
-  const ctaOpen = document.getElementById('ctaOpen');
-  const modal = document.getElementById('offerModal');
-  const modalClose = document.getElementById('modalClose');
-
-  ctaOpen.addEventListener('click', function(e){ e.preventDefault(); modal.style.display = 'block'; });
+  const ctaOpen   = document.getElementById('ctaOpen');
+  const modal     = document.getElementById('offerModal');
+  const modalClose= document.getElementById('modalClose');
+  ctaOpen.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'block'; });
   modalClose.addEventListener('click', () => modal.style.display = 'none');
   window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 
-  // === Basic form handling (placeholder) ===
-  document.getElementById('offerForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('Děkujeme za zájem! Ozveme se co nejdříve.');
-    modal.style.display = 'none';
-    this.reset();
-  });
-
-  // === O nás link: prevent jumping down ===
-  const aboutLink = document.getElementById('aboutLink');
-  if(aboutLink){
-    aboutLink.addEventListener('click', function(e){
-      e.preventDefault(); // zruší posun na sekci #about
-      // případně zde můžete zobrazit modal nebo redirect na o-nas.html
-    });
-  }
-</script>
-<script>
-  // zastaví anchor-skok u odkazu „O nás“
-  document.getElementById('about-link')?.addEventListener('click', e => e.preventDefault());
+  // === Zrušíme posun, když by někdo kopíroval starý odkaz #about ===
+  document.getElementById('about-link').addEventListener('click', e => e.preventDefault());
 </script>
 </body>
 </html>
