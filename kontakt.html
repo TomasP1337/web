@@ -41,5 +41,25 @@
 </section>
 <footer>© <span id="year"></span> weeby. Všechna práva vyhrazena.</footer>
 
-<script defer="True" src="/js/main.js"></script></body>
+<!-- ===== POP‑UP FORM ===== -->
+<div class="modal" id="offerModal">
+  <div class="modal-content">
+    <span class="close-modal" id="modalClose">×</span>
+    <h2>Nezávazná poptávka</h2>
+    <form id="offerForm">
+      <label for="name">Jméno</label>
+      <input id="name" required="" type="text"/>
+      <label for="company">Společnost</label>
+      <input id="company" type="text"/>
+      <label for="email">E‑mail</label>
+      <input id="email" required="" type="email"/>
+      <label for="phone">Telefon</label>
+      <input id="phone" type="tel"/>
+      <label for="work">Rozsah práce</label>
+      <textarea id="work" rows="4"></textarea>
+      <button type="submit">Odeslat</button>
+    </form>
+  </div>
+</div>
+<script defer="True" src="js/main.js"></script></body>
 </html>

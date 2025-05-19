@@ -142,6 +142,7 @@
 </ul>
 <button class="btn-price">Poptat</button>
 </article>
+
 <!-- SPRÁVA WEBU -->
 <article class="price-card">
 <div class="price-icon">🔧</div>
@@ -153,4 +154,27 @@
 <li><svg viewbox="0 0 24 24"><path d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z" fill="#16a34a"></path></svg> Pravidelné kontroly výkonu</li>
 <li><svg viewbox="0 0 24 24"><path d="M20.285 6.708l-11.4 11.398-5.657-5.657 1.414-1.414 4.243 4.243 9.986-9.985z" fill="#16a34a"></path></svg> Aktualizace</li>
 <li><svg viewbox="0 0 24 24">&lt;path fill="#16a34a" d="M20.285 6.708
-</svg></li></ul></article></div></section><script defer="True" src="/js/main.js"></script></body></html>
+</article>
+
+  <!-- ===== POP‑UP FORM ===== -->
+  <div class="modal" id="offerModal">
+    <div class="modal-content">
+      <span class="close-modal" id="modalClose">×</span>
+      <h2>Nezávazná poptávka</h2>
+      <form id="offerForm">
+        <label for="name">Jméno</label>
+        <input id="name" required="" type="text"/>
+        <label for="company">Společnost</label>
+        <input id="company" type="text"/>
+        <label for="email">E‑mail</label>
+        <input id="email" required="" type="email"/>
+        <label for="phone">Telefon</label>
+        <input id="phone" type="tel"/>
+        <label for="work">Rozsah práce</label>
+        <textarea id="work" rows="4"></textarea>
+        <button type="submit">Odeslat</button>
+      </form>
+    </div>
+  </div>
+  <script defer="True" src="js/main.js"></script></body>
+</html>
