@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>weeby – Moderní web</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img src="weeby-logo.png" alt="weeby logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#" id="about-link" aria-current="page">O nás</a></li>
+      <li><a href="sluzby.html">Služby</a></li>
+      <li><a href="cenik.html">Ceník</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li>
+        <a class="cta-link" href="#" id="ctaOpen">Mám zájem o nabídku</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Vytváříme digitální zážitky</h1>
+  <p>
+    Moderní weby, grafika a marketing – rychle, kvalitně a cenově dostupně
+    pro restaurace, hotely i farmy.
+  </p>
+  <a class="cta" href="kontakt.html">Kontaktujte nás</a>
+</section>
+
+<!-- ===== UNIFIED GRADIENT CARDS ===== -->
+<section class="services">
+  <div class="grid">
+    <article class="card-base gradient-card">
+      <h3>Webový Design</h3>
+      <p>
+        Vytváříme webové stránky plně přizpůsobené vašim konkrétním
+        potřebám, se zaměřením na moderní a atraktivní design, který zaujme
+        vaše zákazníky.
+      </p>
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12h18M13 6l8 6-8 6"></path>
+      </svg>
+    </article>
+
+    <article class="card-base gradient-card">
+      <h3>Tvorba AI Chat Asistentů</h3>
+      <p>
+        Vytváříme chytré a přívětivé AI asistenty, kteří automatizují
+        zákaznickou podporu a zlepšují interakci se zákazníky.
+      </p>
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12h18M13 6l8 6-8 6"></path>
+      </svg>
+    </article>
+
+    <article class="card-base gradient-card">
+      <h3>Správa Webů</h3>
+      <p>
+        Nabízíme správu webů, které jsme vytvořili, aby vaše online
+        přítomnost byla vždy aktuální a fungovala bez problémů.
+      </p>
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12h18M13 6l8 6-8 6"></path>
+      </svg>
+    </article>
+  </div>
+</section>
+
+<section class="benefits-section">
+  <div class="grid">
+    <article class="card-base gradient-card">
+      <h3>Rychlý start projektu</h3>
+      <p>První verzi webu máte během týdne – čas jsou peníze.</p>
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12h18M13 6l8 6-8 6"></path>
+      </svg>
+    </article>
+
+    <article class="card-base gradient-card">
+      <h3>Kreativní grafický design</h3>
+      <p>Čistá typografie a moderní vizuál, který zaujme.</p>
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12h18M13 6l8 6-8 6"></path>
+      </svg>
+    </article>
+
+    <article class="card-base gradient-card">
+      <h3>Kompletní správa webu</h3>
+      <p>Obsah, aktualizace i bezpečnost necháte na nás.</p>
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12h18M13 6l8 6-8 6"></path>
+      </svg>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>O nás</h2>
+  <p>
+    Jsme tým kreativních profesionálů, kteří milují minimalismus a rychlá
+    řešení. Díky automatizaci a moderním nástrojům dokážeme nabídnout
+    špičkovou kvalitu za zlomek ceny.
+  </p>
+</section>
+
+<footer>
+  © <span id="year"></span> weeby. Všechna práva vyhrazena.
+</footer>
+
+<!-- ===== POP‑UP FORM ===== -->
+<div class="modal" id="offerModal">
+  <div class="modal-content">
+    <span class="close-modal" id="modalClose">×</span>
+    <h2>Nezávazná poptávka</h2>
+    <form id="offerForm">
+      <label for="name">Jméno</label>
+      <input id="name" type="text" required />
+
+      <label for="company">Společnost</label>
+      <input id="company" type="text" />
+
+      <label for="email">E‑mail</label>
+      <input id="email" type="email" required />
+
+      <label for="phone">Telefon</label>
+      <input id="phone" type="tel" />
+
+      <label for="work">Rozsah práce</label>
+      <textarea id="work" rows="4"></textarea>
+
+      <button type="submit">Odeslat</button>
+    </form>
+  </div>
+</div>
+
+<script src="../js/main.js" defer></script>
+</body>
+</html>
