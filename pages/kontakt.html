@@ -1,45 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="cs">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Kontakt | weeby</title>
-
-<link href="/css/styles.css" rel="stylesheet"/></head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt | weeby</title>
+  <link href="/css/styles.css" rel="stylesheet" />
+</head>
 <body>
 <header>
-<a class="logo" href="index.html"><img alt="weeby logo" src="../weeby-logo.png"/></a>
-<nav>
-<ul>
-<li><a href="index.html">O nás</a></li>
-<li><a href="sluzby.html">Služby</a></li>
-<li><a href="cenik.html">Ceník</a></li>
-<li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
-<li><a class="cta-link" href="#" id="ctaOpen">Mám zájem o nabídku</a></li>
-</ul>
-</nav>
+  <a class="logo" href="index.html">
+    <img src="../weeby-logo.png" alt="weeby logo" />
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">O nás</a></li>
+      <li><a href="sluzby.html">Služby</a></li>
+      <li><a href="cenik.html">Ceník</a></li>
+      <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+      <li>
+        <a class="cta-link" href="#" id="ctaOpen">Mám zájem o nabídku</a>
+      </li>
+    </ul>
+  </nav>
 </header>
+
 <section class="page-hero">
-<h1 style="margin-top:-2.9cm;" >Kontaktujte nás</h1>
-<p>Těšíme se na vaši zprávu – ozveme se co nejdříve.</p>
+  <h1 style="margin-top:-2.9cm;">Kontaktujte nás</h1>
+  <p>Těšíme se na vaši zprávu – ozveme se co nejdříve.</p>
 </section>
+
 <section class="contact-section">
-<div class="contact-info">
-<h3>weeby s.r.o.</h3>
-<p>Webová 123, 110 00 Praha</p>
-<p>IČO: 12345678</p>
-<p>📞 <a href="tel:+420123456789">+420 123 456 789</a></p>
-<p>✉️ <a href="mailto:info@weeby.cz">info@weeby.cz</a></p>
-</div>
-<form id="contactForm">
-<input placeholder="Jméno" required="" type="text"/>
-<input placeholder="E‑mail" required="" type="email"/>
-<textarea placeholder="Vaše zpráva" required="" rows="5"></textarea>
-<button type="submit">Odeslat zprávu</button>
-</form>
+  <div class="contact-info">
+    <h3>weeby s.r.o.</h3>
+    <p>Webová 123, 110 00 Praha</p>
+    <p>IČO: 12345678</p>
+    <p>📞 <a href="tel:+420123456789">+420 123 456 789</a></p>
+    <p>✉️ <a href="mailto:info@weeby.cz">info@weeby.cz</a></p>
+  </div>
+
+  <form id="contactForm">
+    <input type="text" placeholder="Jméno" required />
+    <input type="email" placeholder="E‑mail" required />
+    <textarea rows="5" placeholder="Vaše zpráva" required></textarea>
+    <button type="submit">Odeslat zprávu</button>
+  </form>
 </section>
-<footer>© <span id="year"></span> weeby. Všechna práva vyhrazena.</footer>
+
+<footer>
+  © <span id="year"></span> weeby. Všechna práva vyhrazena.
+</footer>
 
 <!-- ===== POP‑UP FORM ===== -->
 <div class="modal" id="offerModal">
@@ -48,18 +57,25 @@
     <h2>Nezávazná poptávka</h2>
     <form id="offerForm">
       <label for="name">Jméno</label>
-      <input id="name" required="" type="text"/>
+      <input id="name" type="text" required />
+
       <label for="company">Společnost</label>
-      <input id="company" type="text"/>
+      <input id="company" type="text" />
+
       <label for="email">E‑mail</label>
-      <input id="email" required="" type="email"/>
+      <input id="email" type="email" required />
+
       <label for="phone">Telefon</label>
-      <input id="phone" type="tel"/>
+      <input id="phone" type="tel" />
+
       <label for="work">Rozsah práce</label>
       <textarea id="work" rows="4"></textarea>
+
       <button type="submit">Odeslat</button>
     </form>
   </div>
 </div>
-<script defer="True" src="../js/main.js"></script></body>
+
+<script src="../js/main.js" defer></script>
+</body>
 </html>
