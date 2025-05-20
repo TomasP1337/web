@@ -11,6 +11,13 @@
   <div class="logo">
     <img src="../weeby-logo.png" alt="weeby logo" />
   </div>
+
+  <button class="burger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <nav>
     <ul>
       <li><a href="#" id="about-link" aria-current="page">O nás</a></li>
@@ -139,6 +146,14 @@
   </div>
 </div>
 
+<script>
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('nav');
+
+  burger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+</script>
 <script src="../js/main.js" defer></script>
 </body>
 </html>
