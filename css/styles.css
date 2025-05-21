@@ -37,6 +37,10 @@
   font-family: system-ui, Arial, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--light);
   color: var(--dark);
@@ -78,26 +82,26 @@ nav {
   }
 
   nav {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
+    height: 100vh;
     background: var(--light);
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease;
-    flex-direction: column;
-    display: block;
+    padding-top: 100px;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
 
   nav.open {
-    max-height: 500px; /* enough for 5+ links */
+    transform: translateX(0);
   }
 
   nav ul {
     flex-direction: column;
     padding: 1rem 2rem;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   nav ul li {
@@ -107,6 +111,7 @@ nav {
   nav ul li a {
     display: block;
     width: 100%;
+    font-size: 1.2rem;
   }
 }
 header {
@@ -571,34 +576,7 @@ footer {
 
 
 /* ===== DESIGN TOKENS (sdílíme s index.html) ===== */
-:root {
-
-  --primary: #0f172a;
-
-  --accent: #2563eb;
-
-  --cta: #d94343;
-
-  --light: #f8fafc;
-
-  --dark: #0f172a;
-
-  --radius: 12px;
-
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, Arial, sans-serif;
-}
-
-body {
-  background: var(--light);
-  color: var(--dark);
-  line-height: 1.6;
-  scroll-behavior: smooth;
-}
+/* Duplicitní :root blok - ponecháme jeho definice, ale zabráníme duplicitě */
 
 
 /* ===== HEADER ===== */
@@ -851,39 +829,7 @@ footer {
 
 
 /* ===== DESIGN TOKENS (sjednocené) ===== */
-:root {
-
-  --primary: #0f172a;
-
-  --accent: #2563eb;
-
-  --cta: #d94343;
-
-  --light: #f8fafc;
-
-  --dark: #0f172a;
-
-  --radius: 12px;
-
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, Arial, sans-serif;
-}
-
-body {
-  background: var(--light);
-  color: var(--dark);
-  line-height: 1.6;
-  scroll-behavior: smooth;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* Duplicitní :root blok - ponecháme jeho definice, ale zabráníme duplicitě */
 
 
 /* ===== HEADER & NAV ===== */
@@ -1037,30 +983,217 @@ footer {
   color: gray;
 }
 
+/* Burger animace */
+@media (max-width: 768px) {
+  .burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -8px);
+  }
+
+  /* Přidáme stín nad obsah při otevřeném menu */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  body.menu-open::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 
 /* --- override to ensure page heroes show background --- */
-
+/* Tento blok zajišťuje, že všechny hero prvky na stránkách
+   budou správně zobrazovat gradient pozadí definovaný v proměnné */
 
 /* hero gradient for internal pages */
 .page-hero {
   background: var(--gradient);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 4rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
 }
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at bottom right, rgba(255,255,255,0.1), transparent 60%);
+  z-index: 1;
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* End override */
 
 /* support active nav via aria-current */
 nav a[aria-current="page"] {
   color: var(--accent);
+  font-weight: 600;
+}
+
+/* Animace pro postupné objevování prvků */
+.animate-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+.animate-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animace pro karty při scrollování */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 nav a[aria-current="page"]::after {
   width: 100%;
+  transition: width 0.3s ease;
 }
 
+/* Vylepšení hover efektů */
+a, button, .cta, .cta-link {
+  transition: all 0.3s ease;
+}
+
+a:hover,
+button:hover,
+.cta:hover,
+.cta-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-base,
+.gradient-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-base:hover,
+.gradient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Tlačítko pro scroll nahoru */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  z-index: 100;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  background: #1e40af;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Vylepšení mobilní responzivity */
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .grid, .cards {
+    gap: 1.5rem;
+  }
+
+  nav.open {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .burger {
+    transition: all 0.3s ease;
+  }
+
+  .burger span {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .burger.active span:first-child {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active span:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+}
 
 /* styl tabulky */
 .services-table {
-
   width: 100%;
 
   border-collapse: collapse;

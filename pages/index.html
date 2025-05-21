@@ -17,7 +17,6 @@
     <span></span>
     <span></span>
   </button>
-
   <nav>
     <ul>
       <li><a href="#" id="about-link" aria-current="page">O nás</a></li>
@@ -32,18 +31,18 @@
 </header>
 
 <section class="page-hero">
-  <h1>Vytváříme digitální zážitky</h1>
-  <p>
+  <h1 class="animate-fade">Vytváříme digitální zážitky</h1>
+  <p class="animate-fade animate-delay-1">
     Moderní weby, grafika a marketing – rychle, kvalitně a cenově dostupně
     pro restaurace, hotely i farmy.
   </p>
-  <a class="cta" href="kontakt.html">Kontaktujte nás</a>
+  <a class="cta animate-fade animate-delay-2" href="kontakt.html">Kontaktujte nás</a>
 </section>
 
 <!-- ===== UNIFIED GRADIENT CARDS ===== -->
 <section class="services">
   <div class="grid">
-    <article class="card-base gradient-card">
+    <article class="card-base gradient-card animate-on-scroll">
       <h3>Webový Design</h3>
       <p>
         Vytváříme webové stránky plně přizpůsobené vašim konkrétním
@@ -55,7 +54,7 @@
       </svg>
     </article>
 
-    <article class="card-base gradient-card">
+    <article class="card-base gradient-card animate-on-scroll">
       <h3>Tvorba AI Chat Asistentů</h3>
       <p>
         Vytváříme chytré a přívětivé AI asistenty, kteří automatizují
@@ -66,7 +65,7 @@
       </svg>
     </article>
 
-    <article class="card-base gradient-card">
+    <article class="card-base gradient-card animate-on-scroll">
       <h3>Správa Webů</h3>
       <p>
         Nabízíme správu webů, které jsme vytvořili, aby vaše online
@@ -81,7 +80,7 @@
 
 <section class="benefits-section">
   <div class="grid">
-    <article class="card-base gradient-card">
+    <article class="card-base gradient-card animate-on-scroll">
       <h3>Rychlý start projektu</h3>
       <p>První verzi webu máte během týdne – čas jsou peníze.</p>
       <svg viewBox="0 0 24 24">
@@ -146,14 +145,6 @@
   </div>
 </div>
 
-<script>
-  const burger = document.querySelector('.burger');
-  const nav = document.querySelector('nav');
-
-  burger.addEventListener('click', () => {
-    nav.classList.toggle('open');
-  });
-</script>
 <script src="../js/main.js" defer></script>
 </body>
 </html>
