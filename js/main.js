@@ -97,12 +97,13 @@
 
         const checkScroll = function() {
           animatedElements.forEach(element => {
-      const elementTop = element.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
 
-      if (elementTop < windowHeight * 0.9) {
-        element.classList.add('show');
-      }
+            // Na mobilních zařízeních nebo pokud je prvek viditelný, přidej třídu show
+            if (window.innerWidth <= 768 || elementTop < windowHeight * 0.9) {
+              element.classList.add('show');
+            }
           });
         };
 
@@ -112,9 +113,12 @@
         // Zkontroluj prvky při scrollování
         window.addEventListener('scroll', checkScroll);
 
+        // Zkontroluj prvky při změně velikosti okna
+        window.addEventListener('resize', checkScroll);
+
         // Vylepšení interaktivity
         const addHoverEffects = () => {
-          const buttons = document.querySelectorAll('button, .cta, .cta-link');
+          const buttons = document.querySelectorAll('button, .cta');
 
           buttons.forEach(button => {
       button.addEventListener('mouseenter', () => {
@@ -130,33 +134,4 @@
         };
 
         addHoverEffects();
-
-        // Scroll-to-top tlačítko
-        const createScrollTopButton = () => {
-          // Vytvoř tlačítko
-          const scrollTopBtn = document.createElement('button');
-          scrollTopBtn.classList.add('scroll-top-btn');
-          scrollTopBtn.innerHTML = '&uarr;';
-          scrollTopBtn.setAttribute('aria-label', 'Zpět nahoru');
-          document.body.appendChild(scrollTopBtn);
-
-          // Zobrazuj tlačítko jen když uživatel scrolluje dolů
-          window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-              scrollTopBtn.classList.add('visible');
-            } else {
-              scrollTopBtn.classList.remove('visible');
-            }
-          });
-
-          // Scroll nahoru při kliknutí
-          scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-          });
-        };
-
-        createScrollTopButton();
 })();
