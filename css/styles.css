@@ -154,6 +154,9 @@ nav a {
   font-weight: 500;
   padding: .25rem;
   transition: color .2s;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 nav a::after {
@@ -418,6 +421,8 @@ nav a {
   padding: .25rem;
   transition: color .2s;
   background-color: transparent;
+  border: none; /* Bez okraje */
+  outline: none; /* Bez obrysu */
 }
 
 nav a::after {
@@ -636,6 +641,7 @@ nav a {
   font-weight: 500;
   padding: .25rem;
   transition: color .2s;
+  background-color: transparent; /* Explicitně nastavujeme průhledné pozadí */
 }
 
 nav a::after {
@@ -651,6 +657,8 @@ nav a::after {
 
 nav a:hover {
   color: var(--accent);
+  background-color: transparent; /* Zajistíme, že při hoveru zůstane pozadí průhledné */
+  box-shadow: none; /* Odstraníme případný stín */
 }
 
 nav a:hover::after, nav a.active::after {
