@@ -337,7 +337,7 @@ nav a:hover::after {
 }
 
 .modal-content {
-  background: #fff;
+  background: orange;
   margin: auto;
   max-width: 500px;
   padding: 2rem;
