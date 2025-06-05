@@ -1056,7 +1056,7 @@ nav a[aria-current="page"]::after {
   color: #fff;
 }
 
-.checkmark {
+.checkbox {
   display: inline-block;
   width: 18px;
   height: 18px;
