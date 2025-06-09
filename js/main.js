@@ -100,21 +100,39 @@
   // Animace prvků při scrollování: najde všechny elementy s třídou 'animate-on-scroll'
   const animatedElements = document.querySelectorAll('.animate-on-scroll');
 
-  // Funkce, která přidá třídu 'show' elementům, když se objeví na obrazovce
-  const checkScroll = function() {
-    animatedElements.forEach(element => {
-      const elementTop = element.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      if (window.innerWidth <= 768 || elementTop < windowHeight * 0.9) {
-        element.classList.add('show'); // Přidá třídu pro zobrazení animace
-      }
-    });
+  // Preferujeme IntersectionObserver pro plynulejší animace
+  const initScrollAnimations = () => {
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      animatedElements.forEach(el => observer.observe(el));
+    } else {
+      // Fallback pro starší prohlížeče
+      const checkScroll = () => {
+        animatedElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (window.innerWidth <= 768 || elementTop < windowHeight * 0.9) {
+            element.classList.add('show');
+          }
+        });
+      };
+
+      checkScroll();
+      window.addEventListener('scroll', checkScroll);
+      window.addEventListener('resize', checkScroll);
+      window.addEventListener('load', checkScroll);
+    }
   };
 
-  checkScroll(); // Zkontroluje hned po načtení
-  window.addEventListener('scroll', checkScroll); // Při scrollování stránky
-  window.addEventListener('resize', checkScroll); // Při změně velikosti okna
-  window.addEventListener('load', checkScroll); // Při úplném načtení stránky
+  initScrollAnimations();
 
   // Funkce pro jemné stíny a posun tlačítek při najetí myší
   const addHoverEffects = () => {

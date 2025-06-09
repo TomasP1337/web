@@ -36,6 +36,7 @@
   --orange: #ff8a00; /* Oranžová barva pro hover efekt */
   --light: #f8fafc;
   --dark: #0f172a;
+  --text-color-light: #ffffff;
   --radius: 12px;
 }
 
@@ -1066,6 +1067,52 @@ nav a[aria-current="page"]::after {
   position: relative;
 }
 
+/* Kontaktni formulář */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius);
+  background: #fff;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-highlight {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.form-group input:focus + .form-highlight,
+.form-group textarea:focus + .form-highlight {
+  width: 100%;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
 .btn-send {
   display: flex;
   align-items: center;
@@ -1129,6 +1176,7 @@ nav a[aria-current="page"]::after {
   height: 130%;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   transform: translateZ(-10px) scale(2);
   z-index: -1;
   background: var(--gradient);
@@ -1289,7 +1337,17 @@ button:hover,
       grid-column: 1 / -1;
       width: 100%;
       letter-spacing: 0.5px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade,
+  .animate-on-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 
   /* CSS soubor byl optimalizován, duplicitní bloky byly odstraněny */
